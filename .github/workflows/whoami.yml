@@ -1,0 +1,19 @@
+name: Show my subject
+
+on: workflow_dispatch
+
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print both possible subjects
+        env:
+          OWNER: ${{ github.repository_owner }}
+          OWNER_ID: ${{ github.repository_owner_id }}
+          FULL: ${{ github.repository }}
+          REPO_ID: ${{ github.repository_id }}
+          REF: ${{ github.ref }}
+        run: |
+          REPO="${FULL##*/}"
+          echo "NAME: repo:${FULL}:ref:${REF}"
+          echo "IDS:  repo:${OWNER}@${OWNER_ID}/${REPO}@${REPO_ID}:ref:${REF}"
