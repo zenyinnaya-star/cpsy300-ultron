@@ -37,7 +37,7 @@ export default function Charts({ insights }: { insights: Insights }) {
             <Tooltip />
             <Legend />
             <Bar dataKey="protein" name="Protein (g)" fill={COLORS.protein} />
-            <Bar dataKey="carbs" name="Carbs (g)" fill={COLORS.carbs} />
+            <Bar dataKey="carbs" name="Carbs (g)" fill={"#d946ef"} />
             <Bar dataKey="fat" name="Fat (g)" fill={COLORS.fat} />
           </BarChart>
         </ResponsiveContainer>
