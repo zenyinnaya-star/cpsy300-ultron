@@ -77,7 +77,7 @@ export default function Charts({ insights }: { insights: Insights }) {
               <XAxis type="number" label={{ value: "number of recipes", position: "insideBottom", offset: -2 }} />
               <YAxis type="category" dataKey="cuisine" width={110} />
               <Tooltip />
-              <Bar dataKey="count" name="Recipes" fill={COLORS.cuisine} />
+              <Bar dataKey="count" name="Recipes" fill={"#0"} />
             </BarChart>
           </ResponsiveContainer>
         </div>
