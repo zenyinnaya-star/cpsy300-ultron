@@ -33,8 +33,17 @@ jobs:
           docker push $ACR_NAME.azurecr.io/recipes:${{ github.sha }}
 
       - name: Deploy to container app
+        env:
+          ENVIRONMENT: cae-cpsy300-ultron-wp
         run: |
-          az containerapp update \
+          ACR_PWD=$(az acr credential show --name $ACR_NAME --query "passwords[0].value" -o tsv)
+
+          az containerapp delete \
+            --name $CONTAINERAPP \
+            --resource-group $RESOURCE_GROUP \
+            --yes
+
+          az containerapp create \
             --name $CONTAINERAPP \
             --resource-group $RESOURCE_GROUP \
             --image $ACR_NAME.azurecr.io/recipes:${{ github.sha }}
