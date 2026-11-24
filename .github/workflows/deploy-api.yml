@@ -1,0 +1,37 @@
+# CPSY 300 Team Project, Phase 2 — the Week 7 Day 2 workflow (Block 9). Put it in .github/workflows/
+# and change app-name to your team's Function App. Nothing else changes.
+name: Deploy the API
+
+on:
+  push:
+    branches: [main]
+    paths: ["api/**", ".github/workflows/deploy-api.yml"]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm run build
+      - run: npm prune --omit=dev
+      - uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - uses: Azure/functions-action@v1
+        with:
+          app-name: fn-recipes-ultron
+          package: api

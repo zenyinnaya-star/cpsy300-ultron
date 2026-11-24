@@ -3,6 +3,7 @@ name: deploy
 on:
   push:
     branches: [main]
+    paths-ignore: ["api/**", ".github/workflows/deploy-api.yml"]
 
 permissions:
   id-token: write
@@ -45,16 +46,5 @@ jobs:
           az containerapp create \
             --name $CONTAINERAPP \
             --resource-group $RESOURCE_GROUP \
-            --environment $ENVIRONMENT \
-            --image $ACR_NAME.azurecr.io/recipes:${{ github.sha }} \
-            --target-port 3000 \
-            --ingress external \
-            --registry-server $ACR_NAME.azurecr.io \
-            --registry-username $ACR_NAME \
-            --registry-password "$ACR_PWD" \
-            --system-assigned \
-            --env-vars \
-              DASHBOARD_TITLE="Ultron Recipes v2" \
-              API_BASE_URL="https://fn-recipes-ultron-dmgnbbdddpawdkcr.mexicocentral-01.azurewebsites.net" \
-              SERVICEBUS_NAMESPACE="sb-recipes-ultron.servicebus.windows.net" \
-            --min-replicas 0
+            --image $ACR_NAME.azurecr.io/recipes:${{ github.sha }}
+

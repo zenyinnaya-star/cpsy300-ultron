@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "COSMOS_ENDPOINT": "https://<your-cosmos-account>.documents.azure.com:443/",
+    "COSMOS_DATABASE": "recipesdb",
+    "ServiceBusConnection__fullyQualifiedNamespace": "<your-namespace>.servicebus.windows.net",
+    "UploadsStorage__blobServiceUri": "https://<your-uploads-account>.blob.core.windows.net",
+    "UploadsStorage__queueServiceUri": "https://<your-uploads-account>.queue.core.windows.net"
+  }
+}
