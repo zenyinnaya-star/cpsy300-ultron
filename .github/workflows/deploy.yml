@@ -3,6 +3,7 @@ name: deploy
 on:
   push:
     branches: [main]
+    paths-ignore: ["api/**", ".github/workflows/deploy-api.yml"]
 
 permissions:
   id-token: write

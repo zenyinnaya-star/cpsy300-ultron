@@ -1,0 +1,23 @@
+{
+  "name": "recipes-api",
+  "version": "2.0.0",
+  "description": "CPSY 300 team project, Phase 2: the event-driven back end (Azure Functions, Node v4 model, TypeScript)",
+  "main": "dist/src/functions/*.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "tsc && node --test dist/test/*.test.js",
+    "start": "func start"
+  },
+  "dependencies": {
+    "@azure/cosmos": "^4.10.1",
+    "@azure/functions": "^4.17.0",
+    "@azure/identity": "^4.14.0",
+    "papaparse": "^5.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/papaparse": "^5.5.2",
+    "typescript": "^5"
+  }
+}

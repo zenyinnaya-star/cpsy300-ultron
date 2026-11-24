@@ -37,7 +37,7 @@ export default function Charts({ insights }: { insights: Insights }) {
             <Tooltip />
             <Legend />
             <Bar dataKey="protein" name="Protein (g)" fill={COLORS.protein} />
-            <Bar dataKey="carbs" name="Carbs (g)" fill={COLORS.carbs} />
+            <Bar dataKey="carbs" name="Carbs (g)" fill={"#d946ef"} />
             <Bar dataKey="fat" name="Fat (g)" fill={COLORS.fat} />
           </BarChart>
         </ResponsiveContainer>
@@ -77,7 +77,7 @@ export default function Charts({ insights }: { insights: Insights }) {
               <XAxis type="number" label={{ value: "number of recipes", position: "insideBottom", offset: -2 }} />
               <YAxis type="category" dataKey="cuisine" width={110} />
               <Tooltip />
-              <Bar dataKey="count" name="Recipes" fill={COLORS.cuisine} />
+              <Bar dataKey="count" name="Recipes" fill={"#0"} />
             </BarChart>
           </ResponsiveContainer>
         </div>
