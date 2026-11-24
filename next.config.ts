@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     agentFeedback: true,
   },
   output: "standalone",
+  serverExternalPackages: ["@azure/service-bus", "@azure/identity"],
   turbopack: {
     rules: {
       "*.css": {
