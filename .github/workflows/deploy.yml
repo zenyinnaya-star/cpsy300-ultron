@@ -57,3 +57,14 @@ jobs:
               API_BASE_URL="https://fn-recipes-ultron-dmgnbbdddpawdkcr.mexicocentral-01.azurewebsites.net" \
               SERVICEBUS_NAMESPACE="sb-recipes-ultron.servicebus.windows.net" \
             --min-replicas 0
+
+      - name: Re-grant Service Bus sender role
+        run: |
+          SB_ID=$(az servicebus namespace show -g $RESOURCE_GROUP -n sb-recipes-ultron --query id -o tsv)
+          NEW_ID=$(az containerapp identity show --name $CONTAINERAPP --resource-group $RESOURCE_GROUP --query principalId -o tsv)
+
+          for ID in $(az role assignment list --scope $SB_ID --role "Azure Service Bus Data Sender" --query "[].id" -o tsv); do
+            az role assignment delete --ids $ID
+          done
+
+          az role assignment create --assignee-object-id $NEW_ID --assignee-principal-type ServicePrincipal --role "Azure Service Bus Data Sender" --scope $SB_ID
